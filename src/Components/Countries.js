@@ -1,13 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Card from "./Card";
 
 const Countries = () => {
     /**
      * déclaration du state pour le tableau des flags
      */
     const [data, setData] = useState([]);
+
     /**
-     * useEffect pour axios et éviter les requêtes sans fin
+     * triage des pays par population
+     */
+    const [sortedData, setSortedData] = useState([]);
+    /**
+     * useEffect avec axios pour éviter les requêtes sans fin
      */
     useEffect(() => {
         axios
@@ -21,7 +27,7 @@ const Countries = () => {
             <h1>Countries </h1>
             <ul className="countries-list">
                 {data.map((country) => (
-                    <li> {country.name} </li>
+                    <Card country={country} key={country.name} />
                 ))}
             </ul>
         </div>
